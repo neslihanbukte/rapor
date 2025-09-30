@@ -24,6 +24,39 @@
      sudo systemctl enable nginx
      sudo systemctl start nginx
 ```
+- Site için yeni bir **server block** dosyası oluşturuldu:
+     `/etc/nginx/conf.d/site.conf`  
+
+     İçeriği aşağıdaki şekilde ayarlandı (Certbot tarafından yönetilen SSL ayarları dahil):  
+     ```nginx
+     server {
+         server_name neslihanbukte.name.tr www.neslihanbukte.name.tr;
+
+         root /usr/share/nginx/html;
+         index index.html;
+
+         listen 443 ssl; # managed by Certbot
+         ssl_certificate /etc/letsencrypt/live/neslihanbukte.name.tr/fullchain.pem; # managed by Certbot
+         ssl_certificate_key /etc/letsencrypt/live/neslihanbukte.name.tr/privkey.pem; # managed by Certbot
+         include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+         ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+     }
+
+     server {
+         if ($host = www.neslihanbukte.name.tr) {
+             return 301 https://$host$request_uri;
+         }
+         if ($host = neslihanbukte.name.tr) {
+             return 301 https://$host$request_uri;
+         }
+
+         listen 80;
+         server_name neslihanbukte.name.tr www.neslihanbukte.name.tr;
+         return 404; # managed by Certbot
+     }
+     ```
+
+
 - Nginx yapılandırıldı. 
 - Alan adı neslihanbukte.name.tr üzerinden yayına alındı. 
 

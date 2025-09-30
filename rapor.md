@@ -24,6 +24,7 @@
      sudo systemctl enable nginx
      sudo systemctl start nginx
      ```
+
 - Nginx yapılandırıldı. 
 - Alan adı neslihanbukte.name.tr üzerinden yayına alındı. 
 

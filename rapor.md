@@ -16,10 +16,15 @@
 
 ### 3. DNS ve Web Sunucusu Yapılandırması
 - **METUnic DNS** yönetim paneli üzerinden aşağıdaki kayıtlar oluşturuldu:  
-  - **A Kaydı**: `neslihanbukte.name.tr` → `54.93.155.19` (Google Cloud VM dış IP adresi)  
+  - **A Kaydı**: `neslihanbukte.name.tr` → `<EC2-PUBLIC-IP>`  
   - **CNAME Kaydı**: `www.neslihanbukte.name.tr` → `neslihanbukte.name.tr`  
-- TTL süresi 3600 saniye olarak ayarlandı.  
-- Bu yönlendirmeler sayesinde alan adı Google Cloud VM’e başarıyla bağlandı.  
-- Sunucuda **Nginx** kurulumu yapılarak alan adı üzerinden yayın başlatıldı.
+- Sunucuda web sunucusu kurulumu gerçekleştirildi.
+ ```bash
+     sudo yum install -y nginx  
+     sudo systemctl enable nginx
+     sudo systemctl start nginx
+     ```
+- Nginx yapılandırıldı. 
+- Alan adı neslihanbukte.name.tr üzerinden yayına alındı. 
 
 

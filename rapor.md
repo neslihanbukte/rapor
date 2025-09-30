@@ -56,8 +56,35 @@
      }
      ```
 
+- Web içeriği `/usr/share/nginx/html/index.html` dizinine yerleştirildi.
+```bash
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Neslihan Bükte</title>
+</head>
+<body>
+  <h1>Neslihan Bükte</h1>
+</body>
+</html>
+```
+- Yapılandırma test edildi ve nginx teniden başlatıldı:
+```bash
+sudo systemctl restart nginx
+```
 
-- Nginx yapılandırıldı. 
+- HTTPS için ssl yapılandırması yapıldı.
+**certbot** aracı ile Let's Encrypt üzerinden ücretsiz SSL sertifikası alındı.
+```bash
+sudo yum install -y certbot python2-certbot-nginx
+sudo certbot --nginx -d neslihanbukte.name.tr -d www.neslihanbukte name.tr
+```
 - Alan adı neslihanbukte.name.tr üzerinden yayına alındı. 
+
+### 4. SSH Erişim Yetkisi 
+- Sunucuya erişim için verilen public SSH anahtarı yetkilendirildi.
+- Bu anahtar ilgili kullanıcının `~/.ssh/authorized_keys` dosyasına eklendi.
+
 
 

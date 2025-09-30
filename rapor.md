@@ -11,6 +11,15 @@
 **Region :** eu-central-1 
 
 - Key Pair oluşturuldu.
-- Security Group ayarları yapıldı.
+- Security Group ayarları yapıldı. : 
 **SSH, HTTP, HTTPS**
+
+### 3. DNS ve Web Sunucusu Yapılandırması
+- **METUnic DNS** yönetim paneli üzerinden aşağıdaki kayıtlar oluşturuldu:  
+  - **A Kaydı**: `neslihanbukte.name.tr` → `54.93.155.19` (Google Cloud VM dış IP adresi)  
+  - **CNAME Kaydı**: `www.neslihanbukte.name.tr` → `neslihanbukte.name.tr`  
+- TTL süresi 3600 saniye olarak ayarlandı.  
+- Bu yönlendirmeler sayesinde alan adı Google Cloud VM’e başarıyla bağlandı.  
+- Sunucuda **Nginx** kurulumu yapılarak alan adı üzerinden yayın başlatıldı.
+
 
